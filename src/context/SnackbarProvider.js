@@ -55,6 +55,6 @@ export const SnackbarProvider = ({
     }), [snackbars, loading, error, refreshSnackbars, getAllSnackbars, currentSnackbar]);
 
     return (<snackbarContext.Provider value={value}>
-            {children}
-        </snackbarContext.Provider>);
+        {children}
+    </snackbarContext.Provider>);
 }

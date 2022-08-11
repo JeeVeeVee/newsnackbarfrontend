@@ -1,4 +1,7 @@
 import logo from "../logo.svg";
+import LoginButton from "../components/auth0/Login";
+import Profile from "../components/auth0/Profile";
+import LogoutButton from "../components/auth0/Logout";
 
 export default function () {
     return (
@@ -8,6 +11,9 @@ export default function () {
                 <p>
                     Welcome home
                 </p>
+                <LoginButton />
+                <Profile />
+                <LogoutButton />
                 <a
                     className="App-link"
                     href="https://reactjs.org"
@@ -17,6 +23,7 @@ export default function () {
                     Learn React
                 </a>
             </header>
+
         </div>
     )
 }

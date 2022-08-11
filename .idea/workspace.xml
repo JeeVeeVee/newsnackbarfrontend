@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ee79cb7-2ec3-49bf-af52-d224d77c48d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/snack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/snackbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/context/SnackProvider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/context/SnackbarProvider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/MenuPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RestoPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/auth0/Login.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/auth0/Logout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/auth0/Profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/context/OrderProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/SnackbarProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackbarProvider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +51,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -71,6 +71,9 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
@@ -108,7 +111,7 @@
       <workItem from="1660145675764" duration="653000" />
       <workItem from="1660151762092" duration="2104000" />
       <workItem from="1660202045609" duration="4119000" />
-      <workItem from="1660206498762" duration="3942000" />
+      <workItem from="1660206498762" duration="14183000" />
     </task>
     <servers />
   </component>
