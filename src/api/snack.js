@@ -3,7 +3,6 @@ import {
 } from '.';
 
 export async function getAllSnacksInSnackbar(SnackbarId) {
-    console.log(SnackbarId)
     const {
         data
     } = await axios({
