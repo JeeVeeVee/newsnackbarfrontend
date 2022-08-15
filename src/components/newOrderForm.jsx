@@ -29,11 +29,10 @@ export default function NewOrderForm() {
     }
 
     const restos = snackbars;
-    console.log(restos)
     return (<>
         <div>
             <form
-                className=" w-max mx-auto my-auto"
+                className="w-max mx-auto my-auto"
                 onSubmit={handleSubmit(onSubmit)}>
                 <input
                     {...register("order_naam", validationRules.order_naam)}

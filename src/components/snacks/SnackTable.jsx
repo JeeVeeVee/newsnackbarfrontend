@@ -2,7 +2,7 @@ import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, {tableCellClasses} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
@@ -10,13 +10,20 @@ import TableRow from '@mui/material/TableRow';
 import {useParams} from "react-router-dom";
 import {useSnack} from "../../context/SnackProvider";
 import {useEffect} from "react";
+import {styled} from "@mui/material/styles";
 
 const columns = [{id: 'name', label: 'Naam', minWidth: 170}, {id: 'price', label: 'Price', minWidth: 180},];
 
-function createData(name, code, population, size) {
-    const density = population / size;
-    return {name, code, population, size, density};
-}
+
+const StyledTableCell = styled(TableCell)(({theme}) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+    },
+}));
 
 
 export default function SnackTable() {
@@ -48,18 +55,13 @@ export default function SnackTable() {
         setPage(0);
     };
 
-    return (<Paper sx={{width: '100%', overflow: 'hidden'}}>
+    return (<Paper sx={{ overflow: 'hidden', margin : 'auto'}}>
         <TableContainer sx={{maxHeight: 800}}>
             <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                     <TableRow>
-                        {columns.map((column) => (<TableCell
-                            key={column.id}
-                            align="center"
-                            style={{minWidth: column.minWidth}}
-                        >
-                            {column.label}
-                        </TableCell>))}
+                        <StyledTableCell align="center" sx={{width : 350}}>Naam</StyledTableCell>
+                        <StyledTableCell align="center" sx={{width : 350}}>Prijs</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
