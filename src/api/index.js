@@ -6,6 +6,7 @@ export const axios = axiosRoot.create({
 });
 
 export const setAuthToken = (token) => {
+    console.log("setAuthToken", token);
     if (token) {
         axios.defaults.headers['Authorization'] = `Bearer ${token}`;
     } else {

@@ -7,6 +7,8 @@ import {SnackbarProvider} from "./context/SnackbarProvider";
 import {SnackProvider} from "./context/SnackProvider";
 import {Auth0Provider} from "@auth0/auth0-react";
 import {getConfig} from "./config";
+import {AuthProvider} from "./context/AuthProvider";
+import {OrderProvider} from "./context/OrderProvider";
 
 const config = getConfig();
 
@@ -22,11 +24,15 @@ root.render(
         <Auth0Provider
             {...providerConfig}
         >
-            <SnackbarProvider>
-                <SnackProvider>
-                    <App/>
-                </SnackProvider>
-            </SnackbarProvider>
+            <AuthProvider>
+                <SnackbarProvider>
+                    <SnackProvider>
+                        <OrderProvider>
+                            <App/>
+                        </OrderProvider>
+                    </SnackProvider>
+                </SnackbarProvider>
+            </AuthProvider>
         </Auth0Provider>
     </React.StrictMode>);
 

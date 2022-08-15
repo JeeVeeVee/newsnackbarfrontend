@@ -11,7 +11,7 @@ export const SnackbarProvider = ({
     const [currentSnackbar, setCurrentSnackbar] = useState({});
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
-    const [snackbars, setSnackbars] = useState([]);
+    const [snackbars, setSnackbars] = useState({data : []});
     const [initialized, setInitialized] = useState(false);
 
     const refreshSnackbars = useCallback(async () => {

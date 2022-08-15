@@ -5,18 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ee79cb7-2ec3-49bf-af52-d224d77c48d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/auth_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth0/Login.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth0/Logout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth0/Profile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/context/OrderProvider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/newOrderForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/context/AuthProvider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/NewOrderPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth0/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth0/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/OrderProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/OrderProvider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/SnackbarProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackbarProvider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RestoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RestoPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,6 +76,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
   </component>
@@ -111,7 +113,8 @@
       <workItem from="1660145675764" duration="653000" />
       <workItem from="1660151762092" duration="2104000" />
       <workItem from="1660202045609" duration="4119000" />
-      <workItem from="1660206498762" duration="14183000" />
+      <workItem from="1660206498762" duration="16408000" />
+      <workItem from="1660552888113" duration="5383000" />
     </task>
     <servers />
   </component>
