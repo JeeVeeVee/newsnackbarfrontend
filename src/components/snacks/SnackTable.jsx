@@ -5,16 +5,12 @@ import TableBody from '@mui/material/TableBody';
 import TableCell, {tableCellClasses} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {useParams} from "react-router-dom";
 import {useSnack} from "../../context/SnackProvider";
 import {useEffect} from "react";
 import {styled} from "@mui/material/styles";
 import {useAuth} from "../../context/AuthProvider";
-
-const columns = [{id: 'name', label: 'Naam', minWidth: 170}, {id: 'price', label: 'Price', minWidth: 180},];
-
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,10 +24,8 @@ const StyledTableCell = styled(TableCell)(({theme}) => ({
 
 
 export default function SnackTable() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(20);
     const snackbarId = useParams();
-    const {snacks, getAllSnacksInSnackbar, loading, error} = useSnack();
+    const {getAllSnacksInSnackbar, loading} = useSnack();
     const {ready} = useAuth();
     let [snacksInSnackbar, setSnacksInSnackbar] = React.useState([]);
 
@@ -42,21 +36,12 @@ export default function SnackTable() {
         }
         fetchSnacks();
 
-    }, [ready]);
+    }, [ready, getAllSnacksInSnackbar, snackbarId]);
 
     if (loading && ! ready) {
         return (<p>loading</p>);
     }
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-    console.log(snacksInSnackbar);
     return (<Paper sx={{ overflow: 'hidden', margin : 'auto'}}>
         <TableContainer sx={{maxHeight: 800}}>
             <Table stickyHeader aria-label="sticky table">

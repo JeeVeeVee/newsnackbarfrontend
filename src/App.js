@@ -7,6 +7,7 @@ import MenuPage from "./pages/MenuPage";
 import {useAuth0} from "@auth0/auth0-react";
 import {useEffect, useState} from "react";
 import NewOrderPage from "./pages/NewOrderPage";
+import OrdersPage from "./pages/OrdersPage";
 
 function App() {
     const {user, isAuthenticated, getAccessTokenSilently} = useAuth0();
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/snackbars" exact element={<RestosPage/>}/>
                 <Route path="/snackbars/:id" element={<MenuPage/>}/>
                 <Route path="/new-order" element={<NewOrderPage/>}/>
+                <Route path="/orders/" element={<OrdersPage/>}/>"
             </Routes>
         </Router>);
 }

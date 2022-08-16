@@ -33,7 +33,7 @@ export const OrderProvider = ({
         } finally {
             setLoading(false);
         }
-    });
+    }, []);
 
     useEffect(() => {
         if (!initialized && ready) {
@@ -55,7 +55,7 @@ export const OrderProvider = ({
         } finally {
             setLoading(false);
         }
-    });
+    }, [orders]);
 
     const value = useMemo(() => ({
         orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading

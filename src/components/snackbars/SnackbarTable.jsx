@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useSnackbar} from "../../context/SnackbarProvider";
 import {RestaurantMenu} from "@mui/icons-material";
-import {Link} from "@mui/material";
+import {Link} from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,12 +28,8 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
     },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-    return {name, calories, fat, carbs, protein};
-}
-
 export default function SnackbarTable() {
-    const {snackbars, loading, error} = useSnackbar();
+    const {snackbars, loading} = useSnackbar();
 
     return (
         <>
@@ -56,7 +52,7 @@ export default function SnackbarTable() {
                                 <StyledTableCell align="center">{snackbar.straat}</StyledTableCell>
                                 <StyledTableCell align="center">{snackbar.stad}</StyledTableCell>
                                 <StyledTableCell align="center"><Link
-                                    href={"/snackbars/" + snackbar.snackbar_id}><RestaurantMenu/></Link></StyledTableCell>
+                                    to={"/snackbars/" + snackbar.snackbar_id}><RestaurantMenu/></Link></StyledTableCell>
                             </StyledTableRow>))}
                         </TableBody>
                     </Table>

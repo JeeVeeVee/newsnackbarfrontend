@@ -11,9 +11,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import {LunchDining, Help} from "@mui/icons-material";
+import {LunchDining} from "@mui/icons-material";
 import {useAuth0} from "@auth0/auth0-react";
-import {Link} from "@mui/material";
+import {Link} from "react-router-dom"
 
 
 const NavBar = () => {
@@ -101,11 +101,13 @@ const NavBar = () => {
                             display: {xs: 'block', md: 'none'},
                         }}
                     >
-                        {pages.map((page) => (<Link key={page.name} href={page.path}>
-                            <MenuItem onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center">{page.name}</Typography>
-                            </MenuItem>
-                        </Link>))}
+                        {pages.map((page) => (
+                            <Link to={page.path}>
+                                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page.name}</Typography>
+                                </MenuItem>
+                            </Link>
+                        ))}
                     </Menu>
                 </Box>
                 <LunchDining sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
@@ -128,7 +130,7 @@ const NavBar = () => {
                     SNACKBAR
                 </Typography>
                 <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                    {pages.map((page) => (<Link key={page.name} href={page.path}>
+                    {pages.map((page) => (<Link to={page.path}>
                         <Button
                             onClick={handleCloseNavMenu}
                             sx={{my: 2, color: 'white', display: 'block'}}
@@ -163,7 +165,9 @@ const NavBar = () => {
                             <MenuItem key={setting.name} onClick={setting.action}>
                                 <Typography textAlign="center">{setting.name}</Typography>
                             </MenuItem>))) : (logoutSettings.map((setting) => (
-                            <MenuItem key={setting.name} onClick={setting.action}/>)))}
+                            <MenuItem key={setting.name} onClick={setting.action}>
+                                <Typography textAlign="center">{setting.name}</Typography>
+                            </MenuItem>)))}
                     </Menu>
                 </Box>
             </Toolbar>
