@@ -13,10 +13,8 @@ import {Link} from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
+        backgroundColor: theme.palette.common.black, color: theme.palette.common.white,
+    }, [`&.${tableCellClasses.body}`]: {
         fontSize: 14,
     },
 }));
@@ -24,8 +22,7 @@ const StyledTableCell = styled(TableCell)(({theme}) => ({
 const StyledTableRow = styled(TableRow)(({theme}) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
+    }, // hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
     },
@@ -39,31 +36,32 @@ export default function SnackbarTable() {
     const {snackbars, loading, error} = useSnackbar();
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{minWidth: 700}} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell align="center">Naam</StyledTableCell>
-                        <StyledTableCell align="center">Locatie</StyledTableCell>
-                        <StyledTableCell align="center">Postcode</StyledTableCell>
-                        <StyledTableCell align="center">Menu</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                {loading ? (<p>loading</p>) : (
-                    <TableBody>
-                        {snackbars.data.map((snackbar) => (
-                            <StyledTableRow key={snackbar.snackbar_id}>
+        <>
+            {
+                loading ? (<p>loading</p>) : (<TableContainer component={Paper}>
+                    <Table sx={{minWidth: 700}} aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell align="center">Naam</StyledTableCell>
+                                <StyledTableCell align="center">Locatie</StyledTableCell>
+                                <StyledTableCell align="center">Postcode</StyledTableCell>
+                                <StyledTableCell align="center">Menu</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {snackbars.data.map((snackbar) => (<StyledTableRow key={snackbar.snackbar_id}>
                                 <StyledTableCell component="th" scope="row" align="center">
                                     {snackbar.naam}
                                 </StyledTableCell>
                                 <StyledTableCell align="center">{snackbar.straat}</StyledTableCell>
                                 <StyledTableCell align="center">{snackbar.stad}</StyledTableCell>
-                                <StyledTableCell align="center"><Link href={"/snackbars/" + snackbar.snackbar_id}><RestaurantMenu/></Link></StyledTableCell>
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                )}
-            </Table>
-        </TableContainer>
+                                <StyledTableCell align="center"><Link
+                                    href={"/snackbars/" + snackbar.snackbar_id}><RestaurantMenu/></Link></StyledTableCell>
+                            </StyledTableRow>))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>)
+            }
+        </>
     );
 }

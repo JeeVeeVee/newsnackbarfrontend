@@ -1,9 +1,9 @@
-import {useSnackbar} from "../context/SnackbarProvider";
 import NewOrderForm from "../components/newOrderForm";
 
-export default function () {
+const NewOrderPage = () => {
     return (<>
         <NewOrderForm/>
     </>)
-
 }
+
+export default NewOrderPage;

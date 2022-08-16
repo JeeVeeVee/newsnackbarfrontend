@@ -1,6 +1,8 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 import * as snackbarAPI from '../api/snackbar';
+import {useAuth0} from "@auth0/auth0-react";
+import {useAuth} from "./AuthProvider";
 
 export const snackbarContext = createContext();
 export const useSnackbar = () => useContext(snackbarContext);
@@ -9,10 +11,12 @@ export const SnackbarProvider = ({
                                      children
                                  }) => {
     const [currentSnackbar, setCurrentSnackbar] = useState({});
+    const {ready} = useAuth();
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [snackbars, setSnackbars] = useState({data : []});
     const [initialized, setInitialized] = useState(false);
+    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
 
     const refreshSnackbars = useCallback(async () => {
         console.log("refreshSnackbars");
@@ -31,11 +35,11 @@ export const SnackbarProvider = ({
     }, []);
 
     useEffect(() => {
-        if (!initialized) {
+        if (!initialized && ready) {
             refreshSnackbars();
             setInitialized(true);
         }
-    }, [refreshSnackbars, initialized]);
+    }, [refreshSnackbars, initialized, ready]);
 
     const getAllSnackbars = useCallback(async () => {
         try {

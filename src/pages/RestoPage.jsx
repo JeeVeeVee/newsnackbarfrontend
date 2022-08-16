@@ -1,12 +1,12 @@
 import NavBar from "../components/core/NavBar";
-import SnackTable from "../components/snacks/SnackTable";
 import SnackbarTable from "../components/snackbars/SnackbarTable";
 
-export default function () {
-    return (
-        <>
+
+const RestosPage = () => {
+    return (<>
             <NavBar/>
             <SnackbarTable/>
-        </>
-    )
+        </>)
 }
+
+export default RestosPage;

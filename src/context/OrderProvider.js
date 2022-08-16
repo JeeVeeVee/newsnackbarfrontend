@@ -1,6 +1,7 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 import * as orderApi from '../api/order';
+import {useAuth} from "./AuthProvider";
 
 export const orderContext = createContext();
 export const useOrder = () => useContext(orderContext);
@@ -14,14 +15,12 @@ export const OrderProvider = ({
     const [currentOrder, setCurrentOrder] = useState({});
     const [initialized, setInitialized] = useState(false);
 
-    useEffect(() => {
-        if (!initialized) {
-            refreshOrders();
-            setInitialized(true);
-        }
-    })
+    const {ready} = useAuth();
+
+
 
     const refreshOrders = useCallback(async () => {
+        console.log("refreshOrders");
         try {
             setError();
             setLoading(true);
@@ -35,6 +34,13 @@ export const OrderProvider = ({
             setLoading(false);
         }
     });
+
+    useEffect(() => {
+        if (!initialized && ready) {
+            refreshOrders();
+            setInitialized(true);
+        }
+    }, [refreshOrders, initialized, ready]);
 
     const createOrder = useCallback(async (order) => {
         try {

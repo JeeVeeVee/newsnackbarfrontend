@@ -1,6 +1,8 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 import * as snackAPI from '../api/snack';
+import {useAuth0} from "@auth0/auth0-react";
+import {useAuth} from "./AuthProvider";
 
 export const snackContext = createContext();
 export const useSnack = () => useContext(snackContext);
@@ -12,6 +14,8 @@ export const SnackProvider = ({
     const [loading, setLoading] = useState(false);
     const [snacks, setSnacks] = useState([]);
     const [initialized, setInitialized] = useState(false);
+    const {ready} = useAuth();
+
 
     const refreshSnacks = useCallback(async () => {
         console.log("refreshSnacks");
@@ -30,24 +34,27 @@ export const SnackProvider = ({
     }, []);
 
     useEffect(() => {
-        if (!initialized) {
+        if (!initialized && ready) {
             refreshSnacks();
             setInitialized(true);
         }
-    }, [refreshSnacks, initialized]);
+    }, [refreshSnacks, initialized, ready]);
 
     const getAllSnacksInSnackbar = useCallback(async (snackbarID) => {
-        try {
-            setError();
-            setLoading(true);
-            return await snackAPI.getAllSnacksInSnackbar(snackbarID);
-        } catch (error) {
-            setError(error);
-            console.log(error);
-        } finally {
-            setLoading(false);
+        if(ready){
+            try {
+                setError();
+                setLoading(true);
+                return await snackAPI.getAllSnacksInSnackbar(snackbarID);
+            } catch (error) {
+                setError(error);
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
         }
-    }, [])
+        return []
+    }, [ready])
 
     const getAllSnacks = useCallback(async () => {
         try {

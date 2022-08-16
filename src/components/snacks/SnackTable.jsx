@@ -11,6 +11,7 @@ import {useParams} from "react-router-dom";
 import {useSnack} from "../../context/SnackProvider";
 import {useEffect} from "react";
 import {styled} from "@mui/material/styles";
+import {useAuth} from "../../context/AuthProvider";
 
 const columns = [{id: 'name', label: 'Naam', minWidth: 170}, {id: 'price', label: 'Price', minWidth: 180},];
 
@@ -31,6 +32,7 @@ export default function SnackTable() {
     const [rowsPerPage, setRowsPerPage] = React.useState(20);
     const snackbarId = useParams();
     const {snacks, getAllSnacksInSnackbar, loading, error} = useSnack();
+    const {ready} = useAuth();
     let [snacksInSnackbar, setSnacksInSnackbar] = React.useState([]);
 
     useEffect(() => {
@@ -40,9 +42,9 @@ export default function SnackTable() {
         }
         fetchSnacks();
 
-    }, []);
+    }, [ready]);
 
-    if (loading) {
+    if (loading && ! ready) {
         return (<p>loading</p>);
     }
 
@@ -54,7 +56,7 @@ export default function SnackTable() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-
+    console.log(snacksInSnackbar);
     return (<Paper sx={{ overflow: 'hidden', margin : 'auto'}}>
         <TableContainer sx={{maxHeight: 800}}>
             <Table stickyHeader aria-label="sticky table">

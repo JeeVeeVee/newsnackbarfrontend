@@ -6,8 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="6ee79cb7-2ec3-49bf-af52-d224d77c48d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/newOrderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/newOrderForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/snackbars/SnackbarTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/snackbars/SnackbarTable.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/snacks/SnackTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/snacks/SnackTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AuthProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/OrderProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/OrderProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/SnackProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/SnackbarProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackbarProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MenuPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MenuPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NewOrderPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewOrderPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RestoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RestoPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +115,7 @@
       <workItem from="1660151762092" duration="2104000" />
       <workItem from="1660202045609" duration="4119000" />
       <workItem from="1660206498762" duration="16408000" />
-      <workItem from="1660552888113" duration="18565000" />
+      <workItem from="1660552888113" duration="28450000" />
     </task>
     <servers />
   </component>
