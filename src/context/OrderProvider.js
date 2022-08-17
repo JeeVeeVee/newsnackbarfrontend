@@ -12,7 +12,7 @@ export const OrderProvider = ({
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [orders, setOrders] = useState([]);
-    const [currentOrder, setCurrentOrder] = useState({});
+    const [currentOrder, setCurrentOrder] = useState({order_name : "", date : "", createdBy : ""});
     const [initialized, setInitialized] = useState(false);
 
     const {ready} = useAuth();
@@ -57,8 +57,28 @@ export const OrderProvider = ({
         }
     }, [orders]);
 
+    const getOrderById = useCallback(async (id) => {
+        if(ready){
+            try {
+                setError();
+                setLoading(true);
+                const data = await orderApi.getOrderById(id);
+                setCurrentOrder(data);
+                return data;
+            } catch (error) {
+                setError(error);
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        else{
+            return {order : ""}
+        }
+    }, [ready]);
+
     const value = useMemo(() => ({
-        orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading
+        orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading, getOrderById
     }), [refreshOrders, orders, createOrder, currentOrder, error, loading]);
 
     return (<orderContext.Provider value={value}>{children}</orderContext.Provider>)

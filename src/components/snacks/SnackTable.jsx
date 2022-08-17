@@ -24,7 +24,7 @@ const StyledTableCell = styled(TableCell)(({theme}) => ({
 
 
 export default function SnackTable() {
-    const snackbarId = useParams();
+    const snackbarId = useParams().id;
     const {getAllSnacksInSnackbar, loading} = useSnack();
     const {ready} = useAuth();
     let [snacksInSnackbar, setSnacksInSnackbar] = React.useState([]);

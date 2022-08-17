@@ -7,7 +7,7 @@ export async function getAllSnacksInSnackbar(SnackbarId) {
         data
     } = await axios({
         method: 'get',
-        url: `/snacks/bySnackbar/${SnackbarId.id}`
+        url: `/snacks/bySnackbar/${SnackbarId}`
     });
     return data;
 }

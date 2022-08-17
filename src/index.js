@@ -9,6 +9,7 @@ import {Auth0Provider} from "@auth0/auth0-react";
 import {getConfig} from "./config";
 import {AuthProvider} from "./context/AuthProvider";
 import {OrderProvider} from "./context/OrderProvider";
+import {OrderRowProvider} from "./context/OrderRowProvider";
 
 const config = getConfig();
 
@@ -28,7 +29,9 @@ root.render(
                 <SnackbarProvider>
                     <SnackProvider>
                         <OrderProvider>
-                            <App/>
+                            <OrderRowProvider>
+                                <App />
+                            </OrderRowProvider>
                         </OrderProvider>
                     </SnackProvider>
                 </SnackbarProvider>

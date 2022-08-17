@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import {useAuth0} from "@auth0/auth0-react";
 import {useSnackbar} from "../context/SnackbarProvider";
 import {useOrder} from "../context/OrderProvider";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -22,11 +22,12 @@ export default function NewOrderForm() {
     const {createOrder} = useOrder();
     const {snackbars, loading} = useSnackbar();
     const navigate = useNavigate();
-
     const onSubmit = async (data) => {
         let result = await createOrder(data);
-        console.log(result.data[0].order_id)
-        navigate("orders/" + await result.data[0].order_id);
+        console.log(result[0].order_id);
+        //console.log(result.data[0].order_id)
+        let order_id =result[0].order_id
+        await navigate("/orders/" + order_id);
     }
 
     const restos = snackbars;
