@@ -130,7 +130,7 @@ const NavBar = () => {
                     SNACKBAR
                 </Typography>
                 <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                    {pages.map((page) => (<Link to={page.path}>
+                    {pages.map((page) => (<Link key={page.name} to={page.path}>
                         <Button
                             onClick={handleCloseNavMenu}
                             sx={{my: 2, color: 'white', display: 'block'}}
