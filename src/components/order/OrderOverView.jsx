@@ -13,6 +13,7 @@ import {useOrder} from "../../context/OrderProvider";
 import {useEffect, useState} from "react";
 import {useOrderRow} from "../../context/OrderRowProvider";
 import {Typography} from "@mui/material";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -33,15 +34,9 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
 
 export default function OrderOverView() {
     const orderId = useParams().id;
-    const {getOrderById} = useOrder();
-    const {getAllOrderRowsInOrder} = useOrderRow();
-    const [currentOrder, setCurrentOrder] = useState(false);
+    const {getOrderById, currentOrder, setCurrentOrderId} = useOrder();
+    const {getAllOrderRowsInOrder, deleteOrderRow} = useOrderRow();
     const [currentOrderRows, setCurrentOrderRows] = useState(false);
-
-    const fetchOrder = async () => {
-        const order = await getOrderById(orderId);
-        setCurrentOrder(order);
-    }
 
     const fetchOrderRows = async () => {
         const orderRows = await getAllOrderRowsInOrder(orderId);
@@ -49,11 +44,10 @@ export default function OrderOverView() {
     }
 
     useEffect(() => {
-        fetchOrder();
         fetchOrderRows();
-    }, [orderId, getAllOrderRowsInOrder, getOrderById]);
+    }, [orderId, currentOrder, getOrderById]);
 
-    if (currentOrder && currentOrderRows) {
+    if (currentOrder && currentOrderRows && currentOrder.data && currentOrder.data[0]) {
         return (<>
             {<div className={"w-3/4 mx-auto pt-6"}>
                 <Typography variant="h4" gutterBottom>
@@ -74,7 +68,13 @@ export default function OrderOverView() {
                                     {order_row.naam}
                                 </StyledTableCell>
                                 <StyledTableCell align="center">{order_row.prijs}</StyledTableCell>
-                                <StyledTableCell align="center">delete</StyledTableCell>
+                                <StyledTableCell align="center"><DeleteForeverIcon onClick={ async () => {
+                                    await deleteOrderRow(order_row.order_row_id);
+                                    console.log(currentOrder.data[0].order_id)
+                                    await setCurrentOrderId(currentOrder.data[0].order_id);
+                                    await fetchOrderRows();
+                                }
+                                }/></StyledTableCell>
                             </StyledTableRow>))}
                         </TableBody>
                     </Table>

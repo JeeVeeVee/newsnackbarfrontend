@@ -2,6 +2,7 @@ import React, {createContext, useCallback, useContext, useEffect, useMemo, useSt
 import {useAuth} from "./AuthProvider";
 import * as orderRowApi from '../api/orderRow';
 import {getAllOrderRowsInOrder} from "../api/orderRow";
+import {useOrder} from "./OrderProvider";
 
 export const orderRowContext = createContext();
 export const useOrderRow = () => useContext(orderRowContext);
@@ -15,6 +16,8 @@ export const OrderRowProvider = ({
     const [currentOrderRows, setCurrentOrderRows] = useState([]);
     const [currentOrder, setCurrentOrder] = useState({order_name : "", date : "", createdBy : ""});
     const [initialized, setInitialized] = useState(false);
+
+    const {refreshCurrentOrder} = useOrder();
 
     const {ready} = useAuth();
 
@@ -74,9 +77,26 @@ export const OrderRowProvider = ({
         }
     }, [ready]);
 
+    const deleteOrderRow = useCallback(async (id) => {
+        if(ready){
+            try {
+                setError();
+                setLoading(true);
+                await orderRowApi.deleteOrderRow(id);
+                setOrderRows(orderRows.filter(orderRow => orderRow.id !== id));
+            } catch (error) {
+                setError(error);
+                console.log(error);
+            } finally {
+                setLoading(false);
+               // refreshCurrentOrder();
+            }
+        }
+    }, [ready]);
+
     const value = useMemo(() => ({
-        orderRows, refreshOrderRows, createOrderRow, error, loading, getAllOrderRowsInOrder
-    }), [getAllOrderRowsInOrder, orderRows, refreshOrderRows, createOrderRow, error, loading]);
+        orderRows, refreshOrderRows, createOrderRow, error, loading, getAllOrderRowsInOrder, deleteOrderRow
+    }), [getAllOrderRowsInOrder, orderRows, refreshOrderRows, createOrderRow, error, loading, deleteOrderRow]);
 
     return (<orderRowContext.Provider value={value}>{children}</orderRowContext.Provider>);
 }

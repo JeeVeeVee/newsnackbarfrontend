@@ -57,6 +57,17 @@ export const OrderProvider = ({
         }
     }, [orders]);
 
+    const setCurrentOrderId = async (orderID) => {
+        let currentOrderLoad = await getOrderById(orderID);
+        setCurrentOrder(currentOrderLoad);
+    };
+
+    const refreshCurrentOrder = async() => {
+        console.log(currentOrder);
+        let currentOrderLoad =  await orderApi.getOrderById(currentOrder.order_id);
+        setCurrentOrder(currentOrderLoad);
+    }
+
     const getOrderById = useCallback(async (id) => {
         if(ready){
             try {
@@ -78,8 +89,8 @@ export const OrderProvider = ({
     }, [ready]);
 
     const value = useMemo(() => ({
-        orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading, getOrderById
-    }), [refreshOrders, orders, createOrder, currentOrder, error, loading]);
+        orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading, getOrderById, setCurrentOrderId, refreshCurrentOrder
+    }), [refreshOrders, orders, createOrder, currentOrder, error, loading, setCurrentOrderId]);
 
     return (<orderContext.Provider value={value}>{children}</orderContext.Provider>)
 }

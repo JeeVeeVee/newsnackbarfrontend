@@ -2,6 +2,17 @@ import {
     axios,
 } from '.';
 
+export async function deleteOrderRow(id) {
+    const {
+        data
+    } = await axios({
+        method: 'delete',
+        url: `/order_rows/${id}`,
+    });
+    return data;
+}
+
+
 export async function getAllOrderRowsInOrder(orderID) {
     const {
         data

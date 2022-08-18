@@ -3,6 +3,7 @@ import {
 } from '.';
 
 export async function getOrderById(id) {
+    console.log(id);
     const {
         data
     } = await axios({
