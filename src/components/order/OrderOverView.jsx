@@ -34,18 +34,10 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
 
 export default function OrderOverView() {
     const orderId = useParams().id;
-    const {getOrderById, currentOrder, setCurrentOrderId} = useOrder();
+    const {getOrderById, currentOrder, setCurrentOrderId, currentOrderDetails, refreshCurrentOrder} = useOrder();
     const {getAllOrderRowsInOrder, deleteOrderRow} = useOrderRow();
-    const [currentOrderRows, setCurrentOrderRows] = useState(false);
+    const {currentOrderRows} = useOrderRow();
 
-    const fetchOrderRows = async () => {
-        const orderRows = await getAllOrderRowsInOrder(orderId);
-        setCurrentOrderRows(orderRows);
-    }
-
-    useEffect(() => {
-        fetchOrderRows();
-    }, [orderId, currentOrder, getOrderById]);
 
     if (currentOrder && currentOrderRows && currentOrder.data && currentOrder.data[0]) {
         return (<>
@@ -71,8 +63,7 @@ export default function OrderOverView() {
                                 <StyledTableCell align="center"><DeleteForeverIcon onClick={ async () => {
                                     await deleteOrderRow(order_row.order_row_id);
                                     console.log(currentOrder.data[0].order_id)
-                                    await setCurrentOrderId(currentOrder.data[0].order_id);
-                                    await fetchOrderRows();
+                                    refreshCurrentOrder();
                                 }
                                 }/></StyledTableCell>
                             </StyledTableRow>))}
@@ -94,7 +85,7 @@ export default function OrderOverView() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {currentOrder.snackTotals.map((snackTotal) => (<StyledTableRow key={snackTotal.naam}>
+                                {currentOrderDetails.snackTotals.map((snackTotal) => (<StyledTableRow key={snackTotal.naam}>
                                     <StyledTableCell component="th" scope="row" align="center">
                                         {snackTotal.naam}
                                     </StyledTableCell>
@@ -117,7 +108,7 @@ export default function OrderOverView() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {currentOrder.payments.map((payment) => (<StyledTableRow key={payment.user_name}>
+                                {currentOrderDetails.payments.map((payment) => (<StyledTableRow key={payment.user_name}>
                                     <StyledTableCell component="th" scope="row" align="center">
                                         {payment.user_name}
                                     </StyledTableCell>

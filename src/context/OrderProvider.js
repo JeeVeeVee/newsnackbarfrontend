@@ -12,12 +12,16 @@ export const OrderProvider = ({
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [orders, setOrders] = useState([]);
-    const [currentOrder, setCurrentOrder] = useState({order_name : "", date : "", createdBy : ""});
+    const [currentOrder, setCurrentOrder] = useState(null);
+    const [currentOrderDetails, setCurrentOrderDetails] = useState(false);
+    const [currentOrderId, setCurrentOrderId] = useState(null);
     const [initialized, setInitialized] = useState(false);
 
     const {ready} = useAuth();
 
-
+    useEffect(() => {
+        refreshCurrentOrder();
+    }, [currentOrderId]);
 
     const refreshOrders = useCallback(async () => {
         console.log("refreshOrders");
@@ -57,16 +61,11 @@ export const OrderProvider = ({
         }
     }, [orders]);
 
-    const setCurrentOrderId = async (orderID) => {
-        let currentOrderLoad = await getOrderById(orderID);
-        setCurrentOrder(currentOrderLoad);
-    };
-
     const refreshCurrentOrder = async() => {
-        console.log(currentOrder);
-        let currentOrderLoad =  await orderApi.getOrderById(currentOrder.order_id);
-        setCurrentOrder(currentOrderLoad);
+        let currentOrderLoad =  await orderApi.getOrderById(currentOrderId);
+        setCurrentOrderDetails({payments : currentOrderLoad.payments, snackTotals : currentOrderLoad.snackTotals});
     }
+
 
     const getOrderById = useCallback(async (id) => {
         if(ready){
@@ -89,8 +88,8 @@ export const OrderProvider = ({
     }, [ready]);
 
     const value = useMemo(() => ({
-        orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading, getOrderById, setCurrentOrderId, refreshCurrentOrder
-    }), [refreshOrders, orders, createOrder, currentOrder, error, loading, setCurrentOrderId]);
+        orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading, getOrderById, refreshCurrentOrder, currentOrderId, setCurrentOrderId, currentOrderDetails, setCurrentOrderDetails
+    }), [orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading, getOrderById, refreshCurrentOrder, currentOrderId, setCurrentOrderId, currentOrderDetails, setCurrentOrderDetails]);
 
     return (<orderContext.Provider value={value}>{children}</orderContext.Provider>)
 }

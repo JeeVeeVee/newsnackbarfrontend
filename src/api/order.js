@@ -3,7 +3,7 @@ import {
 } from '.';
 
 export async function getOrderById(id) {
-    console.log(id);
+    console.log("api-call getOrderById");
     const {
         data
     } = await axios({
@@ -15,6 +15,7 @@ export async function getOrderById(id) {
 
 
 export async function getAllOrders(){
+    console.log("api-call getAllOrders");
     const {
         data
     } = await axios({
@@ -25,6 +26,7 @@ export async function getAllOrders(){
 }
 
 export async function createOrder(newOrder){
+    console.log("api-call createOrder");
     const {
         data
     } = await axios({

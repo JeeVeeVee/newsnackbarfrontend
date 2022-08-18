@@ -1,9 +1,8 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 import * as snackbarAPI from '../api/snackbar';
-import {useAuth0} from "@auth0/auth0-react";
 import {useAuth} from "./AuthProvider";
-import * as snackAPI from "../api/snack";
+import {useOrder} from "./OrderProvider";
 
 export const snackbarContext = createContext();
 export const useSnackbar = () => useContext(snackbarContext);
@@ -12,11 +11,12 @@ export const SnackbarProvider = ({
                                      children
                                  }) => {
     const {ready} = useAuth();
+    const {currentOrderId, currentOrder} = useOrder();
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [snackbars, setSnackbars] = useState({data : []});
+    const [currentSnackbar, setCurrentSnackbar] = useState(false);
     const [initialized, setInitialized] = useState(false);
-    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
 
     const refreshSnackbars = useCallback(async () => {
         console.log("refreshSnackbars");
@@ -24,6 +24,7 @@ export const SnackbarProvider = ({
             setError();
             setLoading(true);
             const data = await snackbarAPI.getAllSnackBars();
+            console.log(data);
             setSnackbars(data);
             return data;
         } catch (error) {
@@ -33,6 +34,18 @@ export const SnackbarProvider = ({
             setLoading(false);
         }
     }, []);
+
+    useEffect(() => {
+        getCurrentSnackbar();
+    }, [currentOrder]);
+
+    const getCurrentSnackbar = async () => {
+        if(currentOrder && currentOrder.data){
+            let snackbarLoaded = await getSnackbarById(currentOrder.data[0].snackbar_id);
+            setCurrentSnackbar(snackbarLoaded);
+        }
+        return currentSnackbar;
+    }
 
     const getSnackbarById = useCallback(async (snackbarID) => {
         if(ready){
@@ -71,8 +84,8 @@ export const SnackbarProvider = ({
     }, []);
 
     const value = useMemo(() => ({
-        snackbars, loading, error, refreshSnackbars, getAllSnackbars, getSnackbarById
-    }), [snackbars, loading, error, refreshSnackbars, getAllSnackbars,getSnackbarById]);
+        snackbars, loading, error, refreshSnackbars, getAllSnackbars, getSnackbarById, currentSnackbar, setCurrentSnackbar, getCurrentSnackbar
+    }), [snackbars, loading, error, refreshSnackbars, getAllSnackbars,getSnackbarById, currentSnackbar, setCurrentSnackbar]);
 
     return (<snackbarContext.Provider value={value}>
         {children}

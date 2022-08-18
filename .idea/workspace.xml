@@ -9,12 +9,20 @@
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/order.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/orderRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/orderRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/snack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/snack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/snackbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/snackbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order/AddToOrderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/AddToOrderForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/order/OrderHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/OrderHeader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/order/OrderOverView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/OrderOverView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/orders/OrdersTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/orders/OrdersTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/OrderProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/OrderProvider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/OrderRowProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/OrderRowProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/SnackProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/SnackbarProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackbarProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/OrderPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/OrderPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +133,7 @@
       <workItem from="1660652490286" duration="3074000" />
       <workItem from="1660658664180" duration="18594000" />
       <workItem from="1660744449302" duration="14674000" />
+      <workItem from="1660850824125" duration="5109000" />
     </task>
     <servers />
   </component>
@@ -141,6 +150,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix navbar" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

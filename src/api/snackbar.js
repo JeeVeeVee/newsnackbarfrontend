@@ -3,6 +3,7 @@ import {
 } from '.';
 
 export async function getSnackBarById(id) {
+    console.log("api-call getSnackBarById");
     const {
         data
     } = await axios({
@@ -14,6 +15,7 @@ export async function getSnackBarById(id) {
 
 
 export const getAllSnackBars = async () => {
+    console.log("api-call getAllSnackBars");
     const {
         data
     } = await axios({

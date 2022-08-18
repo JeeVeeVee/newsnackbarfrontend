@@ -15,29 +15,27 @@ const config = getConfig();
 
 const providerConfig = {
     domain: config.domain,
-    clientId: config.clientId,
-    ...(config.audience ? { audience: config.audience } : null),
+    clientId: config.clientId, ...(config.audience ? {audience: config.audience} : null),
     redirectUri: window.location.origin,
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <React.StrictMode>
-        <Auth0Provider
-            {...providerConfig}
-        >
-            <AuthProvider>
+root.render(<React.StrictMode>
+    <Auth0Provider
+        {...providerConfig}
+    >
+        <AuthProvider>
+            <OrderProvider>
                 <SnackbarProvider>
                     <SnackProvider>
-                        <OrderProvider>
-                            <OrderRowProvider>
-                                <App />
-                            </OrderRowProvider>
-                        </OrderProvider>
+                        <OrderRowProvider>
+                            <App/>
+                        </OrderRowProvider>
                     </SnackProvider>
                 </SnackbarProvider>
-            </AuthProvider>
-        </Auth0Provider>
-    </React.StrictMode>);
+            </OrderProvider>
+        </AuthProvider>
+    </Auth0Provider>
+</React.StrictMode>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

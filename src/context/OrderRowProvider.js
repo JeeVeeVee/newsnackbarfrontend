@@ -1,7 +1,6 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {useAuth} from "./AuthProvider";
 import * as orderRowApi from '../api/orderRow';
-import {getAllOrderRowsInOrder} from "../api/orderRow";
 import {useOrder} from "./OrderProvider";
 
 export const orderRowContext = createContext();
@@ -14,57 +13,55 @@ export const OrderRowProvider = ({
     const [loading, setLoading] = useState(false);
     const [orderRows, setOrderRows] = useState([]);
     const [currentOrderRows, setCurrentOrderRows] = useState([]);
-    const [currentOrder, setCurrentOrder] = useState({order_name : "", date : "", createdBy : ""});
     const [initialized, setInitialized] = useState(false);
-
-    const {refreshCurrentOrder} = useOrder();
+    const {currentOrderId, currentOrder} = useOrder();
 
     const {ready} = useAuth();
 
-    const refreshOrderRows = useCallback(async () => {
-        console.log(refreshOrderRows());
-        try {
-            setError();
-            setLoading(true);
-            const data = await orderRowApi.getAllOrderRows();
-            setOrderRows(data);
-            return data;
-        } catch (error) {
-            setError(error);
-            console.log(error);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
 
     useEffect(() => {
         if (!initialized && ready) {
-            //refreshOrderRows();
             setInitialized(true);
         }
-    }, [refreshOrderRows, ready]);
+    }, [ready]);
+
+    const fetchCurrentOrderRows = async () => {
+        let currentOrderRowsLoad = await orderRowApi.getAllOrderRowsInOrder(currentOrderId);
+        setCurrentOrderRows(currentOrderRowsLoad);
+    }
+
+    useEffect(() => {
+        console.log(currentOrderId);
+        console.log("ik ben NU hier")
+        fetchCurrentOrderRows();
+    }, [currentOrderId]);
 
     const createOrderRow = useCallback(async (orderRow) => {
-        console.log(orderRow);
-        try {
-            setError();
-            setLoading(true);
-            const data = await orderRowApi.createOrderRow(orderRow);
-            setOrderRows([...orderRows, data]);
-            return data;
-        } catch (error) {
-            setError(error);
-            console.log(error);
-        } finally {
-            setLoading(false);
+        if(ready) {
+            try {
+                setError();
+                setLoading(true);
+                const data = await orderRowApi.createOrderRow(orderRow);
+                if(currentOrderId){
+                    let newCurrentOrderRowsLoad = await getAllOrderRowsInOrder(currentOrderId);
+                    setCurrentOrderRows(newCurrentOrderRowsLoad);
+                }
+                return data;
+            } catch (error) {
+                setError(error);
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
         }
-    }, []);
+    }, [ready]);
 
     const getAllOrderRowsInOrder = useCallback(async (orderID) => {
         if(ready){
             try {
                 setError();
                 setLoading(true);
+                console.log("van hier");
                 const data = await orderRowApi.getAllOrderRowsInOrder(orderID);
                 setOrderRows(data);
                 return data;
@@ -83,7 +80,7 @@ export const OrderRowProvider = ({
                 setError();
                 setLoading(true);
                 await orderRowApi.deleteOrderRow(id);
-                setOrderRows(orderRows.filter(orderRow => orderRow.id !== id));
+                fetchCurrentOrderRows();
             } catch (error) {
                 setError(error);
                 console.log(error);
@@ -95,8 +92,8 @@ export const OrderRowProvider = ({
     }, [ready]);
 
     const value = useMemo(() => ({
-        orderRows, refreshOrderRows, createOrderRow, error, loading, getAllOrderRowsInOrder, deleteOrderRow
-    }), [getAllOrderRowsInOrder, orderRows, refreshOrderRows, createOrderRow, error, loading, deleteOrderRow]);
+        orderRows, createOrderRow, error, loading, getAllOrderRowsInOrder, deleteOrderRow, currentOrderRows
+    }), [getAllOrderRowsInOrder, orderRows, createOrderRow, error, loading, deleteOrderRow, currentOrderRows]);
 
     return (<orderRowContext.Provider value={value}>{children}</orderRowContext.Provider>);
 }

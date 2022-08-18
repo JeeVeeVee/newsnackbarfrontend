@@ -3,6 +3,7 @@ import {
 } from '.';
 
 export async function deleteOrderRow(id) {
+    console.log("api-call deleteOrderRow");
     const {
         data
     } = await axios({
@@ -14,6 +15,7 @@ export async function deleteOrderRow(id) {
 
 
 export async function getAllOrderRowsInOrder(orderID) {
+    console.log("api-call getAllOrderRowsInOrder");
     const {
         data
     } = await axios({
@@ -25,6 +27,7 @@ export async function getAllOrderRowsInOrder(orderID) {
 
 
 export async function getOrderRowById(id) {
+    console.log("api-call getOrderRowById");
     const {
         data
     } = await axios({
@@ -36,6 +39,7 @@ export async function getOrderRowById(id) {
 
 
 export async function getAllOrderRows(){
+    console.log("api-call getAllOrderRows");
     const {
         data
     } = await axios({
@@ -46,7 +50,7 @@ export async function getAllOrderRows(){
 }
 
 export async function createOrderRow(newOrder){
-    console.log(newOrder);
+    console.log("api-call createOrderRow");
     const {
         data
     } = await axios({
@@ -54,6 +58,5 @@ export async function createOrderRow(newOrder){
         url: `/order_rows/`,
         data : newOrder,
     });
-    console.log(data);
     return data;
 }

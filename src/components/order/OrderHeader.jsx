@@ -9,38 +9,23 @@ import Typography from "@mui/material/Typography";
 
 
 export default function OrderHeader() {
-    const orderId = useParams().id;
-    const {ready} = useAuth();
+
     const {currentOrder, loading} = useOrder();
-    const {getSnackbarById} = useSnackbar();
-    const [currentSnackbar, setCurrentSnackbar] = useState({naam: ""});
+    const {currentSnackbar} = useSnackbar();
 
-    const fetchSnackbar = async () => {
-        if(currentOrder && currentOrder.data) {
-            const snackbar = await getSnackbarById(currentOrder.data[0].snackbar_id);
-            setCurrentSnackbar(snackbar[0]);
-        }
-    }
-
-    useEffect(() => {
-        fetchSnackbar();
-    }, [ready, currentOrder.snackbar_id]);
-
-
-    if (! loading && currentOrder && currentOrder.data && currentOrder.data[0]) {
-        console.log(currentOrder.data[0].order_id);
+    if ( currentOrder && currentOrder.data && currentOrder.data[0] && currentSnackbar) {
         return (<>.
             <div className={"mx-3"}>
                 <Typography variant="h2" gutterBottom>
                     {currentOrder.data[0].order_naam}
                 </Typography>
                 <p>This orders is due for {currentOrder.data[0].date},and created  by {currentOrder.data[0].created_by}.</p>
-                <p>You can pick any snacks from {currentSnackbar.naam}</p>
+                <p>You can pick any snacks from {currentSnackbar[0].naam}</p>
             </div>
         </>);
     }
     return (<>
-            fak
+
         </>
     );
 }

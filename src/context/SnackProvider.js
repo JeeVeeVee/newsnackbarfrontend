@@ -3,6 +3,7 @@ import React, {createContext, useCallback, useContext, useEffect, useMemo, useSt
 import * as snackAPI from '../api/snack';
 import {useAuth0} from "@auth0/auth0-react";
 import {useAuth} from "./AuthProvider";
+import {useOrder} from "./OrderProvider";
 
 export const snackContext = createContext();
 export const useSnack = () => useContext(snackContext);
@@ -14,7 +15,9 @@ export const SnackProvider = ({
     const [loading, setLoading] = useState(false);
     const [snacks, setSnacks] = useState([]);
     const [initialized, setInitialized] = useState(false);
+    const [currentSnack, setCurrentSnack] = useState([]);
     const {ready} = useAuth();
+    const {currentOrderId, currentOrder} = useOrder();
 
 
     const refreshSnacks = useCallback(async () => {
@@ -34,11 +37,17 @@ export const SnackProvider = ({
     }, []);
 
     useEffect(() => {
-        if (!initialized && ready) {
-            refreshSnacks();
-            setInitialized(true);
+        getCurrentSnacks();
+        console.log("refreshcurrentSnacks")
+    }, [currentOrder]);
+
+    const getCurrentSnacks = async () => {
+        if(currentOrder && currentOrder.data){
+            let currentSnack = await getAllSnacksInSnackbar(currentOrder.data[0].snackbar_id);
+            setCurrentSnack(currentSnack);
         }
-    }, [refreshSnacks, initialized, ready]);
+        return currentSnack;
+    }
 
     const getAllSnacksInSnackbar = useCallback(async (snackbarID) => {
         if(ready){
@@ -70,8 +79,8 @@ export const SnackProvider = ({
     }, []);
 
     const value = useMemo(() => ({
-        loading, error, refreshSnacks, getAllSnacks, getAllSnacksInSnackbar, snacks
-    }), [snacks, loading, error, refreshSnacks, getAllSnacks, getAllSnacksInSnackbar]);
+        loading, error, refreshSnacks, getAllSnacks, getAllSnacksInSnackbar, snacks, currentSnack, setCurrentSnack, getCurrentSnacks
+    }), [snacks, loading, error, refreshSnacks, getAllSnacks, getAllSnacksInSnackbar, currentSnack, setCurrentSnack, getCurrentSnacks]);
 
     return <snackContext.Provider value={value}>{children}</snackContext.Provider>;
 }

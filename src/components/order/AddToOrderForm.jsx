@@ -19,38 +19,17 @@ const validationRules = {
 export default function AddToOrderForm() {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const orderId = useParams().id;
-    const {getOrderById} = useOrder();
-    const {getAllSnacksInSnackbar} = useSnack();
-    const {createOrderRow} = useOrderRow();
-    const [currentOrder, setCurrentOrder] = useState(false);
-    const [currentSnacks, setCurrentSnacks] = useState(false);
+    const {currentOrder, getOrderById, setCurrentOrder, refreshCurrentOrder} = useOrder();
+    const {currentSnack} = useSnack();
+    const {createOrderRow, getAllOrderRowsInOrder} = useOrderRow();
 
-    const fetchOrder = async () => {
-        const order = await getOrderById(orderId);
-        setCurrentOrder(order);
-    }
-
-    const fetchSnacks = async () => {
-        if(currentOrder && currentOrder.data) {
-            let currentSnack = await getAllSnacksInSnackbar(currentOrder.data[0].snackbar_id);
-            setCurrentSnacks(currentSnack);
-        }
-    }
-
-    useEffect(() => {
-        fetchOrder();
-    }, [orderId, getOrderById, getAllSnacksInSnackbar]);
-
-    useEffect(() => {
-        fetchSnacks();
-    }, [currentOrder]);
 
     const onSubmit = async (data) => {
         data["order_id"] = currentOrder.data[0].order_id;
         await createOrderRow(data);
-        fetchOrder();
+        await refreshCurrentOrder();
     }
-    if(currentOrder && currentSnacks){
+    if(currentOrder && currentSnack){
         return (<>
             <div className={"my-6"}>
                 <form
@@ -62,7 +41,7 @@ export default function AddToOrderForm() {
                         <option value="">
                             Kies...
                         </option>
-                        {currentSnacks.map((snack) => (<option
+                        {currentSnack.map((snack) => (<option
                             key={snack.snack_id}
                             value={snack.snack_id}
                         >

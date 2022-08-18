@@ -38,7 +38,7 @@ export default function OrdersTable() {
                 <TableHead>
                     <TableRow>
                         <StyledTableCell align="center" sx={{width: 350}}>Name</StyledTableCell>
-                        <StyledTableCell align="center" sx={{width: 350}}>Your price</StyledTableCell>
+                        <StyledTableCell align="center" sx={{width: 350}}>Date</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -50,7 +50,7 @@ export default function OrdersTable() {
                                     </Link>
                                 </TableCell>
                                 <TableCell align="center">
-                                    jouw prijs hier
+                                    {order.date}
                                 </TableCell>
                             </TableRow>);
                     })}
