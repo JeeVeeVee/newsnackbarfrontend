@@ -11,7 +11,7 @@ export const SnackbarProvider = ({
                                      children
                                  }) => {
     const {ready} = useAuth();
-    const {currentOrderId, currentOrder} = useOrder();
+    const {currentOrder} = useOrder();
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [snackbars, setSnackbars] = useState({data : []});
@@ -24,7 +24,6 @@ export const SnackbarProvider = ({
             setError();
             setLoading(true);
             const data = await snackbarAPI.getAllSnackBars();
-            console.log(data);
             setSnackbars(data);
             return data;
         } catch (error) {
@@ -34,18 +33,6 @@ export const SnackbarProvider = ({
             setLoading(false);
         }
     }, []);
-
-    useEffect(() => {
-        getCurrentSnackbar();
-    }, [currentOrder]);
-
-    const getCurrentSnackbar = async () => {
-        if(currentOrder && currentOrder.data){
-            let snackbarLoaded = await getSnackbarById(currentOrder.data[0].snackbar_id);
-            setCurrentSnackbar(snackbarLoaded);
-        }
-        return currentSnackbar;
-    }
 
     const getSnackbarById = useCallback(async (snackbarID) => {
         if(ready){
@@ -62,6 +49,22 @@ export const SnackbarProvider = ({
         }
         return []
     }, [ready])
+
+
+    const getCurrentSnackbar = useCallback( async () => {
+        if(currentOrder && currentOrder.data){
+            let snackbarLoaded = await getSnackbarById(currentOrder.data[0].snackbar_id);
+            setCurrentSnackbar(snackbarLoaded);
+            return snackbarLoaded;
+        }
+
+    }, [currentOrder, getSnackbarById]);
+
+    useEffect(() => {
+        getCurrentSnackbar();
+    }, [currentOrder, getCurrentSnackbar]);
+
+
 
     useEffect(() => {
         if (!initialized && ready) {
@@ -85,7 +88,7 @@ export const SnackbarProvider = ({
 
     const value = useMemo(() => ({
         snackbars, loading, error, refreshSnackbars, getAllSnackbars, getSnackbarById, currentSnackbar, setCurrentSnackbar, getCurrentSnackbar
-    }), [snackbars, loading, error, refreshSnackbars, getAllSnackbars,getSnackbarById, currentSnackbar, setCurrentSnackbar]);
+    }), [snackbars, loading, error, refreshSnackbars, getAllSnackbars,getSnackbarById, currentSnackbar, setCurrentSnackbar, getCurrentSnackbar]);
 
     return (<snackbarContext.Provider value={value}>
         {children}

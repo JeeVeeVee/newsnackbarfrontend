@@ -14,7 +14,7 @@ export const OrderRowProvider = ({
     const [orderRows, setOrderRows] = useState([]);
     const [currentOrderRows, setCurrentOrderRows] = useState([]);
     const [initialized, setInitialized] = useState(false);
-    const {currentOrderId, currentOrder} = useOrder();
+    const {currentOrderId, currentOrderDetails} = useOrder();
 
     const {ready} = useAuth();
 
@@ -23,18 +23,16 @@ export const OrderRowProvider = ({
         if (!initialized && ready) {
             setInitialized(true);
         }
-    }, [ready]);
-
-    const fetchCurrentOrderRows = async () => {
-        let currentOrderRowsLoad = await orderRowApi.getAllOrderRowsInOrder(currentOrderId);
-        setCurrentOrderRows(currentOrderRowsLoad);
-    }
+    }, [ready, initialized]);
 
     useEffect(() => {
         console.log(currentOrderId);
-        console.log("ik ben NU hier")
-        fetchCurrentOrderRows();
-    }, [currentOrderId]);
+        const loadOrderRows = async () => {
+            let currentOrderRowsLoad = await orderRowApi.getAllOrderRowsInOrder(currentOrderId);
+            setCurrentOrderRows(currentOrderRowsLoad);
+        }
+        loadOrderRows();
+    }, [currentOrderId, currentOrderDetails]);
 
     const createOrderRow = useCallback(async (orderRow) => {
         if(ready) {
@@ -42,10 +40,6 @@ export const OrderRowProvider = ({
                 setError();
                 setLoading(true);
                 const data = await orderRowApi.createOrderRow(orderRow);
-                if(currentOrderId){
-                    let newCurrentOrderRowsLoad = await getAllOrderRowsInOrder(currentOrderId);
-                    setCurrentOrderRows(newCurrentOrderRowsLoad);
-                }
                 return data;
             } catch (error) {
                 setError(error);
@@ -80,7 +74,6 @@ export const OrderRowProvider = ({
                 setError();
                 setLoading(true);
                 await orderRowApi.deleteOrderRow(id);
-                fetchCurrentOrderRows();
             } catch (error) {
                 setError(error);
                 console.log(error);

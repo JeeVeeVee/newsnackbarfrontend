@@ -1,5 +1,3 @@
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
 import {useSnack} from "../../context/SnackProvider";
 import {useOrder} from "../../context/OrderProvider";
 import {useForm} from "react-hook-form";
@@ -17,11 +15,10 @@ const validationRules = {
 }
 
 export default function AddToOrderForm() {
-    const {register, handleSubmit, formState: {errors}} = useForm();
-    const orderId = useParams().id;
-    const {currentOrder, getOrderById, setCurrentOrder, refreshCurrentOrder} = useOrder();
+    const {register, handleSubmit} = useForm();
+    const {currentOrder, refreshCurrentOrder} = useOrder();
     const {currentSnack} = useSnack();
-    const {createOrderRow, getAllOrderRowsInOrder} = useOrderRow();
+    const {createOrderRow} = useOrderRow();
 
 
     const onSubmit = async (data) => {

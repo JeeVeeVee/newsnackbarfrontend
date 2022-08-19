@@ -1,5 +1,5 @@
 import React, {
-    createContext, useCallback, useContext, useEffect, useMemo, useState
+    createContext, useContext, useEffect, useMemo, useState
 } from 'react';
 import * as api from '../api';
 

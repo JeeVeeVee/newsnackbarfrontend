@@ -1,7 +1,6 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 import * as snackAPI from '../api/snack';
-import {useAuth0} from "@auth0/auth0-react";
 import {useAuth} from "./AuthProvider";
 import {useOrder} from "./OrderProvider";
 
@@ -14,10 +13,9 @@ export const SnackProvider = ({
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [snacks, setSnacks] = useState([]);
-    const [initialized, setInitialized] = useState(false);
     const [currentSnack, setCurrentSnack] = useState([]);
     const {ready} = useAuth();
-    const {currentOrderId, currentOrder} = useOrder();
+    const {currentOrder} = useOrder();
 
 
     const refreshSnacks = useCallback(async () => {
@@ -36,19 +34,6 @@ export const SnackProvider = ({
         }
     }, []);
 
-    useEffect(() => {
-        getCurrentSnacks();
-        console.log("refreshcurrentSnacks")
-    }, [currentOrder]);
-
-    const getCurrentSnacks = async () => {
-        if(currentOrder && currentOrder.data){
-            let currentSnack = await getAllSnacksInSnackbar(currentOrder.data[0].snackbar_id);
-            setCurrentSnack(currentSnack);
-        }
-        return currentSnack;
-    }
-
     const getAllSnacksInSnackbar = useCallback(async (snackbarID) => {
         if(ready){
             try {
@@ -64,6 +49,21 @@ export const SnackProvider = ({
         }
         return []
     }, [ready])
+
+    const getCurrentSnacks = useCallback( async () => {
+        if(currentOrder && currentOrder.data){
+            let currentSnackLoad = await getAllSnacksInSnackbar(currentOrder.data[0].snackbar_id);
+            setCurrentSnack(currentSnackLoad);
+            return currentSnackLoad;
+        }
+    }, [currentOrder, getAllSnacksInSnackbar]);
+
+    useEffect(() => {
+        getCurrentSnacks();
+        console.log("refreshcurrentSnacks")
+    }, [currentOrder, getCurrentSnacks]);
+
+
 
     const getAllSnacks = useCallback(async () => {
         try {

@@ -21,7 +21,6 @@ const OrderPage = () => {
         }
         fetchOrder();
     } , [orderId, setCurrentOrderId, setCurrentOrder, getOrderById, setCurrentOrderDetails]);
-
     return (<>
         <NavBar/>
         <OrderHeader/>

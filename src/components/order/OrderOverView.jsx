@@ -7,10 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {Link, useParams} from "react-router-dom";
-import {useAuth} from "../../context/AuthProvider";
 import {useOrder} from "../../context/OrderProvider";
-import {useEffect, useState} from "react";
 import {useOrderRow} from "../../context/OrderRowProvider";
 import {Typography} from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -33,9 +30,8 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
 }));
 
 export default function OrderOverView() {
-    const orderId = useParams().id;
-    const {getOrderById, currentOrder, setCurrentOrderId, currentOrderDetails, refreshCurrentOrder} = useOrder();
-    const {getAllOrderRowsInOrder, deleteOrderRow} = useOrderRow();
+    const {currentOrder, currentOrderDetails, refreshCurrentOrder} = useOrder();
+    const {deleteOrderRow} = useOrderRow();
     const {currentOrderRows} = useOrderRow();
 
 

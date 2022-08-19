@@ -1,9 +1,7 @@
 import NavBar from "../components/core/NavBar";
 import {Container} from "@mui/material";
-import {useSnackbar} from "../context/SnackbarProvider";
 
 const HomePage = () => {
-    const {snackbars} = useSnackbar();
     return (<>
         <NavBar/>
         <Container>

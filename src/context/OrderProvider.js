@@ -19,9 +19,7 @@ export const OrderProvider = ({
 
     const {ready} = useAuth();
 
-    useEffect(() => {
-        refreshCurrentOrder();
-    }, [currentOrderId]);
+
 
     const refreshOrders = useCallback(async () => {
         console.log("refreshOrders");
@@ -61,10 +59,10 @@ export const OrderProvider = ({
         }
     }, [orders]);
 
-    const refreshCurrentOrder = async() => {
+    const refreshCurrentOrder = useCallback(async () => {
         let currentOrderLoad =  await orderApi.getOrderById(currentOrderId);
         setCurrentOrderDetails({payments : currentOrderLoad.payments, snackTotals : currentOrderLoad.snackTotals});
-    }
+    }, [currentOrderId]);
 
 
     const getOrderById = useCallback(async (id) => {
@@ -86,6 +84,10 @@ export const OrderProvider = ({
             return {order : ""}
         }
     }, [ready]);
+
+    useEffect(() => {
+        refreshCurrentOrder();
+    }, [currentOrderId, refreshCurrentOrder]);
 
     const value = useMemo(() => ({
         orders, refreshOrders, createOrder, currentOrder, setCurrentOrder, error, loading, getOrderById, refreshCurrentOrder, currentOrderId, setCurrentOrderId, currentOrderDetails, setCurrentOrderDetails
