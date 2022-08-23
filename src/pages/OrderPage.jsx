@@ -6,10 +6,14 @@ import {useOrder} from "../context/OrderProvider";
 import {useEffect} from "react";
 import OrderOverView from "../components/order/OrderOverView";
 import AddToOrderForm from "../components/order/AddToOrderForm";
+import {useAuth0} from "@auth0/auth0-react";
+import LoginButton from "../components/auth0/Login";
+import {Container} from "@mui/material";
 
 const OrderPage = () => {
     const orderId = useParams().id;
     const {setCurrentOrderId, setCurrentOrder, getOrderById, setCurrentOrderDetails} = useOrder();
+    const {isLoading, isAuthenticated} = useAuth0();
 
 
     useEffect(() => {
@@ -20,12 +24,23 @@ const OrderPage = () => {
             setCurrentOrderDetails(order);
         }
         fetchOrder();
-    } , [orderId, setCurrentOrderId, setCurrentOrder, getOrderById, setCurrentOrderDetails]);
+    }, [orderId, setCurrentOrderId, setCurrentOrder, getOrderById, setCurrentOrderDetails]);
+
+    if (!isLoading) {
+        return (<>
+            <NavBar/>
+            {isAuthenticated ? <div>
+                <OrderHeader/>
+                <OrderOverView/>
+                <AddToOrderForm/>
+            </div> : <Container>
+                <p>je bent nog niet ingelogd, log je in om de bestelling te zien</p>
+                <LoginButton/>
+            </Container>}
+
+        </>)
+    }
     return (<>
-        <NavBar/>
-        <OrderHeader/>
-        <AddToOrderForm/>
-        <OrderOverView/>
     </>);
 }
 

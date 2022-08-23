@@ -6,16 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="6ee79cb7-2ec3-49bf-af52-d224d77c48d5" name="Changes" comment="fix navbar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order/AddToOrderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/AddToOrderForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order/OrderHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/OrderHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order/OrderOverView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/OrderOverView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AuthProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/OrderProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/OrderProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth0/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth0/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/core/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/NavBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/newOrderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/newOrderForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/OrderRowProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/OrderRowProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/SnackProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/SnackbarProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SnackbarProvider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MenuPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MenuPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NewOrderPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewOrderPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/OrderPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/OrderPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/OrdersPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/OrdersPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RestoPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RestoPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +68,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -88,7 +90,34 @@
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.test">
+    <configuration name="empty spec" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/cypress/e2e/base_spec.cy.js" />
+      <test-names>
+        <test-name value="empty spec" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="empty spec.passes" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/cypress/e2e/base_spec.cy.js" />
+      <test-names>
+        <test-name value="empty spec" />
+        <test-name value="passes" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="React Buddy Preview" type="js.build_tools.npm" singleton="false" temporary="true" nameIsGenerated="true" show_console_on_std_err="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -101,8 +130,21 @@
       </envs>
       <method v="2" />
     </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.test" />
+        <item itemvalue="Jest.empty spec" />
+        <item itemvalue="Jest.empty spec.passes" />
         <item itemvalue="npm.React Buddy Preview" />
       </list>
     </recent_temporary>
@@ -126,7 +168,8 @@
       <workItem from="1660652490286" duration="3074000" />
       <workItem from="1660658664180" duration="18594000" />
       <workItem from="1660744449302" duration="14674000" />
-      <workItem from="1660850824125" duration="11537000" />
+      <workItem from="1660850824125" duration="16513000" />
+      <workItem from="1661245052748" duration="1198000" />
     </task>
     <servers />
   </component>

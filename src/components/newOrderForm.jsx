@@ -60,19 +60,19 @@ export default function NewOrderForm() {
                         {resto.naam}
                     </option>)))}
                 </select>
-                {errors["order_naam"] && (<p data-cy="labelinput-error" className="text-red-500">
+                {errors["order_naam"] && (<p data-cy="labelinput-error-order-naam" className="text-red-500">
                     {errors["order_naam"].message}
                 </p>)}
-                {errors["date"] && (<p data-cy="labelinput-error" className="text-red-500">
+                {errors["date"] && (<p data-cy="labelinput-error-order-date" className="text-red-500">
                     {errors["date"].message}
                 </p>)}
-                {errors["snackbar_id"] && (<p data-cy="labelinput-error" className="text-red-500">
+                {errors["snackbar_id"] && (<p data-cy="labelinput-error-snackbar-id" className="text-red-500">
                     {errors["snackbar_id"].message}
                 </p>)}
                 <br/>
                 {getAccessTokenSilently ? <input
                     className={"w-min mx-auto my-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"}
-                    type="submit"/> : <></>}
+                    type="submit" cy-data={"submit-new-order-btn"}/> : <></>}
             </form>
         </div>
     </>);

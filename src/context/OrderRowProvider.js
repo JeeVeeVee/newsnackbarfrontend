@@ -28,11 +28,13 @@ export const OrderRowProvider = ({
     useEffect(() => {
         console.log(currentOrderId);
         const loadOrderRows = async () => {
-            let currentOrderRowsLoad = await orderRowApi.getAllOrderRowsInOrder(currentOrderId);
-            setCurrentOrderRows(currentOrderRowsLoad);
+            if(ready){
+                let currentOrderRowsLoad = await orderRowApi.getAllOrderRowsInOrder(currentOrderId);
+                setCurrentOrderRows(currentOrderRowsLoad);
+            }
         }
         loadOrderRows();
-    }, [currentOrderId, currentOrderDetails]);
+    }, [currentOrderId, currentOrderDetails, ready]);
 
     const createOrderRow = useCallback(async (orderRow) => {
         if(ready) {

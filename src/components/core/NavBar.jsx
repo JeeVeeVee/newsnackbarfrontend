@@ -103,7 +103,7 @@ const NavBar = () => {
                     >
                         {pages.map((page) => (
                             <Link key={page.name} to={page.path}>
-                                <MenuItem onClick={handleCloseNavMenu}>
+                                <MenuItem onClick={handleCloseNavMenu} cy-data={page.name + "-link"}>
                                     <Typography textAlign="center">{page.name}</Typography>
                                 </MenuItem>
                             </Link>
@@ -140,9 +140,9 @@ const NavBar = () => {
                     </Link>))}
                 </Box>
 
-                <Box sx={{flexGrow: 0}}>
+                <Box sx={{flexGrow: 0}} cy-data="user-icon-button">
                     {!isLoading && isAuthenticated ? (<Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                        <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}  cy-data="user-icon-button">
                             <Avatar alt={user.name} src={user.picture}/>
                         </IconButton>
                     </Tooltip>) : (<Tooltip title="Open settings">
@@ -160,12 +160,13 @@ const NavBar = () => {
                         transformOrigin={{vertical: 'top', horizontal: 'right',}}
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
+
                     >
                         {!isLoading && isAuthenticated ? (loginSettings.map((setting) => (
-                            <MenuItem key={setting.name} onClick={setting.action}>
+                            <MenuItem key={setting.name} onClick={setting.action} cy-data={setting.name}>
                                 <Typography textAlign="center">{setting.name}</Typography>
                             </MenuItem>))) : (logoutSettings.map((setting) => (
-                            <MenuItem key={setting.name} onClick={setting.action}>
+                            <MenuItem key={setting.name} onClick={setting.action} cy-data={setting.name}>
                                 <Typography textAlign="center">{setting.name}</Typography>
                             </MenuItem>)))}
                     </Menu>
