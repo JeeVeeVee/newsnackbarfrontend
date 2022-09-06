@@ -45,7 +45,7 @@ export default function SnackTable() {
     return (<Paper sx={{ overflow: 'hidden', margin : 'auto'}}>
         <TableContainer sx={{maxHeight: 800}}>
             <Table stickyHeader aria-label="sticky table">
-                <TableHead>
+                <TableHead className={"jemaisjepa"}>
                     <TableRow>
                         <StyledTableCell align="center" sx={{width : 350}}>Naam</StyledTableCell>
                         <StyledTableCell align="center" sx={{width : 350}}>Prijs</StyledTableCell>

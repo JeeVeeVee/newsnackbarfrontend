@@ -14,7 +14,6 @@ const RestosPage = () => {
                 <p>je bent nog niet ingelogd, log je in om de beschikbare snackbars te zien</p>
                 <LoginButton/>
             </Container>}
-            <SnackTable/>
         </>)
     }
     return <></>
