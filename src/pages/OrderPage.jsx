@@ -31,8 +31,8 @@ const OrderPage = () => {
             <NavBar/>
             {isAuthenticated ? <div>
                 <OrderHeader/>
-                <OrderOverView/>
                 <AddToOrderForm/>
+                <OrderOverView/>
             </div> : <Container>
                 <p>je bent nog niet ingelogd, log je in om de bestelling te zien</p>
                 <LoginButton/>
