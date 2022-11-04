@@ -97,7 +97,7 @@ export default function OrderOverView() {
                 <TableHead>
                   <TableRow>
                     <StyledTableCell align="center">Naam</StyledTableCell>
-                    <StyledTableCell align="center">Prijs</StyledTableCell>
+                    <StyledTableCell align="center">Aantal</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
